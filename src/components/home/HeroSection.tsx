@@ -60,9 +60,9 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.25 }}
           className="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          CCCA Works! bridges the gap between high school students and meaningful
-          careers — placing student interns with employer partners through a fully
-          managed, compliant EOR model.
+          CCCA Works! stands at the intersection of school and career. We
+          transition young people into the world of work through paid internships,
+          creating a direct pipeline to high-quality careers and apprenticeships.
         </motion.p>
 
         <motion.div

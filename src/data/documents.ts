@@ -2,39 +2,39 @@ import type { Document } from "@/types";
 
 export const documents: Document[] = [
   {
-    id: "program-overview",
-    title: "Program Overview",
+    id: "partner-services-agreement",
+    title: "Sample Partner Workforce Services Agreement",
     description:
-      "A comprehensive introduction to the CCCA Works! internship program, how it works, and what employers and students can expect.",
+      "Review the standard agreement that defines the partnership between CCCA Works! and employer partners hosting student interns.",
     fileType: "PDF",
-    fileSize: "1.2 MB",
-    href: "/documents/ccca-works-program-overview.pdf",
+    fileSize: "",
+    href: "https://drive.google.com/file/d/1p5Faa4VUOO1VgSJZfp_KQIAbo-Lb7Odj/view?usp=sharing",
   },
   {
-    id: "employer-handbook",
-    title: "Employer Partner Handbook",
+    id: "bylaws",
+    title: "CCCA Works! Bylaws",
     description:
-      "Step-by-step guide for employer partners — from onboarding your first intern to managing day-to-day compliance and reporting.",
+      "The governing bylaws of CCCA Works! as a 501(c)(3) nonprofit organization.",
     fileType: "PDF",
-    fileSize: "2.4 MB",
-    href: "/documents/ccca-works-employer-handbook.pdf",
+    fileSize: "",
+    href: "https://drive.google.com/file/d/1p5Faa4VUOO1VgSJZfp_KQIAbo-Lb7Odj/view?usp=sharing",
   },
   {
-    id: "student-guide",
-    title: "Student Participant Guide",
+    id: "workers-comp-policy",
+    title: "Workers' Compensation Policy",
     description:
-      "Everything students need to know about the internship program: expectations, benefits, transportation assistance, and how to get the most out of your placement.",
+      "Proof of the active workers' compensation policy that covers every CCCA Works! intern placement.",
     fileType: "PDF",
-    fileSize: "980 KB",
-    href: "/documents/ccca-works-student-guide.pdf",
+    fileSize: "",
+    href: "https://drive.google.com/file/d/1GAkNIuHohacHdMfaJeqzrlp7FkyQ1tro/view?usp=sharing",
   },
   {
-    id: "partnership-agreement",
-    title: "Partnership Agreement Template",
+    id: "job-shadow-handbook",
+    title: "CCCA Job Shadow Handbook",
     description:
-      "Sample employer partnership agreement for review. Use the DocuSign form below to sign your official agreement.",
+      "The handbook used to prepare students for their off-campus job shadow experiences with industry partners.",
     fileType: "PDF",
-    fileSize: "450 KB",
-    href: "/documents/ccca-works-partnership-agreement-template.pdf",
+    fileSize: "",
+    href: "https://drive.google.com/file/d/1-hHKtAwMZx4oVo5wD06kQodDhcjrwMRI/view?usp=sharing",
   },
 ];
