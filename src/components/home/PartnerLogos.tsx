@@ -21,7 +21,12 @@ export function PartnerLogos() {
         <StaggerChildren className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {partners.map((partner) => (
             <StaggerItem key={partner.id}>
-              <div className="group flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-[#E5E7EB] hover:border-[#2B5BA8]/30 hover:shadow-md transition-all duration-300 cursor-default">
+              <a
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-[#E5E7EB] hover:border-[#2B5BA8]/30 hover:shadow-md transition-all duration-300"
+              >
                 <div className="w-full h-12 bg-[#EEF4FF] rounded-lg flex items-center justify-center">
                   <span className="text-[#2B5BA8] font-bold text-xs text-center px-2 leading-tight">
                     {partner.name}
@@ -30,14 +35,10 @@ export function PartnerLogos() {
                 <span className="text-xs text-[#9CA3AF] uppercase tracking-wide group-hover:text-[#F5A623] transition-colors">
                   {partner.industry}
                 </span>
-              </div>
+              </a>
             </StaggerItem>
           ))}
         </StaggerChildren>
-
-        <FadeIn delay={0.3} className="text-center mt-8 text-sm text-[#6B7280]">
-          Partner logos coming soon · Client assets pending
-        </FadeIn>
       </div>
     </section>
   );

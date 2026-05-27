@@ -22,21 +22,22 @@ export function LogoGrid() {
         <StaggerChildren className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {partners.map((partner) => (
             <StaggerItem key={partner.id}>
-              <div className="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border-2 border-[#E5E7EB] hover:border-[#2B5BA8]/40 hover:shadow-[var(--shadow-card)] transition-all duration-300 cursor-default text-center">
+              <a
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border-2 border-[#E5E7EB] hover:border-[#2B5BA8]/40 hover:shadow-[var(--shadow-card)] transition-all duration-300 text-center"
+              >
                 <div className="w-full h-16 bg-[#EEF4FF] rounded-xl flex items-center justify-center group-hover:bg-[#2B5BA8]/5 transition-colors">
                   <span className="text-[#2B5BA8] font-bold text-xs px-3">
                     {partner.name}
                   </span>
                 </div>
                 <Badge variant="blue">{partner.industry}</Badge>
-              </div>
+              </a>
             </StaggerItem>
           ))}
         </StaggerChildren>
-
-        <FadeIn delay={0.4} className="text-center mt-8 text-sm text-[#9CA3AF]">
-          Partner logos will be displayed here once provided by the client.
-        </FadeIn>
       </div>
     </section>
   );
