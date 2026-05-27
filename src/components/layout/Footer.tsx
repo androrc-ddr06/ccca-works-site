@@ -100,12 +100,6 @@ export function Footer() {
                 </svg>
                 {CONTACT_INFO.address}
               </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 mt-0.5 text-[#F5A623] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                {CONTACT_INFO.hours}
-              </li>
             </ul>
           </div>
         </div>

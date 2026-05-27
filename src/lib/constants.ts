@@ -5,6 +5,8 @@ export const NAV_LINKS = [
   { label: "Partners", href: "/partners" },
   { label: "The Process", href: "/process" },
   { label: "Media", href: "/media" },
+  { label: "Documents", href: "/documents" },
+  { label: "Board of Directors", href: "/board" },
 ];
 
 export const DOCUSIGN_URL =
@@ -17,10 +19,9 @@ export const SOCIAL_LINKS = {
 };
 
 export const CONTACT_INFO = {
-  phone: "(555) 000-0000",
+  phone: "(916) 234-0583",
   email: "info@cccaworks.org",
   address: "Sacramento, CA",
-  hours: "Monday – Friday, 9am – 5pm PST",
 };
 
 export const INDUSTRIES = [

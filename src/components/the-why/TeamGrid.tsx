@@ -11,7 +11,7 @@ export function TeamGrid() {
             The People Behind the Mission
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8]">
-            Meet Our Team
+            Board of Directors
           </h2>
         </FadeIn>
 

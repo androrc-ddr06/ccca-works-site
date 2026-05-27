@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 export function HistorySection() {
@@ -6,6 +7,15 @@ export function HistorySection() {
       <div className="container-wide">
         <div className="max-w-3xl mx-auto">
           <FadeIn className="text-center mb-12">
+            <div className="flex justify-center mb-8">
+              <Image
+                src="/ccca-logo.jpg"
+                alt="CCCA Works! Logo"
+                width={220}
+                height={220}
+                className="rounded-2xl shadow-md object-contain"
+              />
+            </div>
             <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
               Our History
             </p>

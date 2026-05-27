@@ -32,13 +32,6 @@ const contactItems = [
     label: "Location",
     value: CONTACT_INFO.address,
   },
-  {
-    icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    ),
-    label: "Hours",
-    value: CONTACT_INFO.hours,
-  },
 ];
 
 export default function ContactPage() {

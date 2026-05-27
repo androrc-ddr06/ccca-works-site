@@ -18,16 +18,16 @@ export function ProblemStatement() {
           <FadeIn delay={0.15}>
             <div className="bg-[#1E3F7A] rounded-3xl p-10 lg:p-14 text-center text-white">
               <div className="text-7xl lg:text-8xl font-bold text-[#F5A623] font-display leading-none mb-4">
-                65%
+                35%
               </div>
               <p className="text-xl lg:text-2xl font-semibold mb-3">
-                of high school students will likely never have the opportunity
-                for an internship.
+                of high school graduates go on to earn a bachelor's degree.
               </p>
               <p className="text-base text-blue-200 max-w-2xl mx-auto leading-relaxed">
-                Only about 35 of every 100 students who enter high school will
-                complete a four-year degree. That leaves the other 65% locked
-                out of the single most powerful springboard into a real career.
+                That means 65% of high school graduates will never follow the
+                traditional college path — and are locked out of the paid
+                internship opportunities that have historically been
+                college-only.
               </p>
             </div>
           </FadeIn>
