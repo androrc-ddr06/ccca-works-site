@@ -30,7 +30,7 @@ export const team: TeamMember[] = [
     name: "Lee Rosenberg",
     title: "Legal Counsel",
     bio: "Lee Rosenberg is a founding partner of Rosenberg Cassady LLP, where he serves as general counsel to high quality California charter schools. His practice sits at an uncommon intersection — part litigator, part transactional counsel, part policy advisor — and he brings to each client the kind of broad institutional knowledge that only comes from having worked inside schools, school districts, government, and leading private sector firms serving sophisticated commercial clients. Before practicing law, Lee taught middle school in the South Bronx as a Teach for America corps member. That experience, and the conviction that every student deserves access to an excellent school, has defined his career ever since. After earning a Master's in Teaching from Pace University, he clerked in the legal offices of the San Francisco Unified School District before entering private practice. Before focusing exclusively on education law, Lee spent nearly a decade in complex civil litigation, including years at Quinn Emanuel Urquhart & Sullivan and Alston & Bird. He earned his J.D., magna cum laude, from UC College of the Law, San Francisco (Order of the Coif), his B.A. with honors in Philosophy from UC Berkeley, and his M.S. in Education from Pace University. He has been recognized as a Rising Star in schools and education by Super Lawyers magazine.",
-    photo: "/team/lee-rosenberg.jpg",
+    photo: "/team/lee-rosenberg.png",
     website: "https://www.rosenbergcassady.com/",
   },
 ];
