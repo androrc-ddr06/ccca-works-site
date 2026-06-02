@@ -5,6 +5,7 @@ export interface TeamMember {
   bio: string;
   photo?: string;
   linkedin?: string;
+  website?: string;
 }
 
 export interface Partner {
@@ -33,6 +34,8 @@ export interface Service {
   bullets: string[];
 }
 
+export type DocumentCategory = "Job Shadow" | "Paid Internship";
+
 export interface Document {
   id: string;
   title: string;
@@ -40,7 +43,14 @@ export interface Document {
   fileType: "PDF" | "DOC" | "XLSX";
   fileSize: string;
   href: string;
+  category: DocumentCategory;
 }
+
+export type EmployerInterest =
+  | "Career Exposure"
+  | "Career Exploration"
+  | "Career Preparation"
+  | "Not sure";
 
 export interface ContactFormData {
   name: string;
@@ -49,4 +59,7 @@ export interface ContactFormData {
   industry: string;
   audienceType: "employer" | "student";
   message: string;
+  // Employer-only
+  companyName: string;
+  interestType: EmployerInterest | "";
 }

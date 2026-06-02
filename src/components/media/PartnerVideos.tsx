@@ -1,7 +1,9 @@
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
 
-const videos = [
+const videos: { id?: string; title: string }[] = [
+  // TODO: add the YouTube ID once the client provides the KCRA segment link.
+  { id: undefined, title: "KCRA 3 News — CCCA Trades Day (3/6/26)" },
   { id: "ae-Ts_7EFT4", title: "Industry Partner Spotlight" },
   { id: "1LmrLIKg2SQ", title: "Industry Partner Spotlight" },
   { id: "pojWAKlDgp8", title: "Industry Partner Spotlight" },
@@ -26,17 +28,27 @@ export function PartnerVideos() {
         </FadeIn>
 
         <StaggerChildren className="grid sm:grid-cols-2 gap-6">
-          {videos.map((video) => (
-            <StaggerItem key={video.id}>
+          {videos.map((video, i) => (
+            <StaggerItem key={video.id ?? `pending-${i}`}>
               <div className="relative aspect-video bg-[#1E3F7A] rounded-2xl overflow-hidden shadow-[var(--shadow-card)]">
-                <iframe
-                  src={`https://www.youtube.com/embed/${video.id}`}
-                  title={video.title}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full"
-                />
+                {video.id ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-white">
+                    <svg className="w-10 h-10 text-[#F5A623] mb-3" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    <p className="font-semibold">{video.title}</p>
+                    <p className="text-sm text-blue-200 mt-1">Video coming soon</p>
+                  </div>
+                )}
               </div>
             </StaggerItem>
           ))}

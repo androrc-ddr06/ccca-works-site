@@ -10,8 +10,9 @@ export function ProblemStatement() {
               The Problem
             </p>
             <h2 className="text-3xl lg:text-5xl font-bold text-[#1E3F7A] leading-tight text-balance">
-              Paid internships have traditionally been{" "}
-              <span className="text-[#F5A623]">college-only.</span>
+              Paid internships should{" "}
+              <span className="text-[#F5A623]">not only</span> be for college
+              students
             </h2>
           </FadeIn>
 

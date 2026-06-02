@@ -7,13 +7,26 @@ export function HistorySection() {
       <div className="container-wide">
         <div className="max-w-3xl mx-auto">
           <FadeIn className="text-center mb-12">
-            <div className="flex justify-center mb-8">
+            <div className="flex items-center justify-center gap-5 sm:gap-8 mb-8">
               <Image
                 src="/ccca-logo.jpg"
-                alt="CCCA Works! Logo"
-                width={220}
-                height={220}
-                className="rounded-2xl shadow-md object-contain"
+                alt="Capital College & Career Academy (CCCA) logo"
+                width={180}
+                height={180}
+                className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl shadow-md object-contain"
+              />
+              <span
+                className="text-4xl sm:text-5xl font-bold text-[#F5A623] shrink-0"
+                aria-hidden="true"
+              >
+                &rarr;
+              </span>
+              <Image
+                src="/logo.png"
+                alt="CCCA Works! logo"
+                width={260}
+                height={84}
+                className="w-32 sm:w-48 h-auto object-contain"
               />
             </div>
             <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">

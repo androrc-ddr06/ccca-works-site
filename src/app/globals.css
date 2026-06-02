@@ -55,6 +55,13 @@
     font-family: var(--font-display);
     line-height: 1.2;
   }
+
+  /* Branded text-selection highlight — keeps selected words readable,
+     including on the dark-blue hero where the default highlight is illegible. */
+  ::selection {
+    background: var(--color-brand-gold);
+    color: #1F2937;
+  }
 }
 
 @layer utilities {

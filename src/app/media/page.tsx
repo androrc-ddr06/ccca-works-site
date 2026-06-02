@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { PartnerVideos } from "@/components/media/PartnerVideos";
+import { PhotoGallery } from "@/components/media/PhotoGallery";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 export const metadata: Metadata = {
@@ -19,6 +20,8 @@ export default function MediaPage() {
       />
 
       <PartnerVideos />
+
+      <PhotoGallery />
 
       <section className="section-padding bg-[#F9FAFB]">
         <div className="container-wide">

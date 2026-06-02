@@ -32,19 +32,34 @@ export function TeamGrid() {
                 <h3 className="font-bold text-[#1F2937] text-lg">{member.name}</h3>
                 <p className="text-[#F5A623] font-semibold text-sm mb-3">{member.title}</p>
                 <p className="text-[#6B7280] text-sm leading-relaxed mb-5">{member.bio}</p>
-                {member.linkedin && (
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[#2B5BA8] text-sm font-medium hover:text-[#F5A623] transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
-                    </svg>
-                    LinkedIn
-                  </a>
-                )}
+                <div className="flex items-center justify-center gap-4">
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[#2B5BA8] text-sm font-medium hover:text-[#F5A623] transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
+                      </svg>
+                      LinkedIn
+                    </a>
+                  )}
+                  {member.website && (
+                    <a
+                      href={member.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[#2B5BA8] text-sm font-medium hover:text-[#F5A623] transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 010 18M12 3a15 15 0 000 18" />
+                      </svg>
+                      Website
+                    </a>
+                  )}
+                </div>
               </div>
             </StaggerItem>
           ))}

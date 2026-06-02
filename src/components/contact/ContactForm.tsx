@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { INDUSTRIES } from "@/lib/constants";
 import { formatPhone } from "@/lib/utils";
-import type { ContactFormData } from "@/types";
+import type { ContactFormData, EmployerInterest } from "@/types";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -15,12 +15,45 @@ const emptyForm: ContactFormData = {
   industry: "",
   audienceType: "employer",
   message: "",
+  companyName: "",
+  interestType: "",
 };
+
+const INTEREST_OPTIONS: { value: EmployerInterest; label: string; description: string }[] = [
+  {
+    value: "Career Exposure",
+    label: "Career Exposure",
+    description:
+      "Coming to campus, speaking with students, and doing a hands-on project with them. A 3–6 hour commitment over 2 days.",
+  },
+  {
+    value: "Career Exploration",
+    label: "Career Exploration",
+    description:
+      "Hosting two (or more) students for a Job Shadow at my company. A 12-week commitment — we provide the transportation and work with you to develop the program.",
+  },
+  {
+    value: "Career Preparation",
+    label: "Career Preparation",
+    description: "Hiring students to be paid interns on site.",
+  },
+  {
+    value: "Not sure",
+    label: "Not sure which suits us best",
+    description: "I’d like more information.",
+  },
+];
+
+const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
 
 export function ContactForm() {
   const [form, setForm] = useState<ContactFormData>(emptyForm);
+  const [resume, setResume] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("idle");
-  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData | "resume", string>>>({});
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const isEmployer = form.audienceType === "employer";
 
   function validate(): boolean {
     const e: typeof errors = {};
@@ -29,7 +62,14 @@ export function ContactForm() {
     if (!form.email.trim()) e.email = "Email is required";
     else if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Enter a valid email";
     if (!form.industry) e.industry = "Please select your industry";
-    if (!form.message.trim()) e.message = "Message is required";
+    if (!form.message.trim()) e.message = "This field is required";
+    if (isEmployer) {
+      if (!form.companyName.trim()) e.companyName = "Company name is required";
+      if (!form.interestType) e.interestType = "Please choose an option";
+    }
+    if (resume && resume.size > MAX_RESUME_BYTES) {
+      e.resume = "File is too large (max 5 MB)";
+    }
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -39,19 +79,30 @@ export function ContactForm() {
     if (!validate()) return;
     setStatus("loading");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (res.ok) {
-        setStatus("success");
-      } else {
-        setStatus("error");
+      const body = new FormData();
+      body.append("name", form.name);
+      body.append("phone", form.phone);
+      body.append("email", form.email);
+      body.append("industry", form.industry);
+      body.append("audienceType", form.audienceType);
+      body.append("message", form.message);
+      if (isEmployer) {
+        body.append("companyName", form.companyName);
+        body.append("interestType", form.interestType);
+      } else if (resume) {
+        body.append("resume", resume);
       }
+
+      const res = await fetch("/api/contact", { method: "POST", body });
+      setStatus(res.ok ? "success" : "error");
     } catch {
       setStatus("error");
     }
+  }
+
+  function setAudience(type: "employer" | "student") {
+    setForm((f) => ({ ...f, audienceType: type }));
+    setErrors({});
   }
 
   if (status === "success") {
@@ -104,14 +155,12 @@ export function ContactForm() {
                 name="audienceType"
                 value={type}
                 checked={form.audienceType === type}
-                onChange={() => setForm((f) => ({ ...f, audienceType: type }))}
+                onChange={() => setAudience(type)}
                 className="hidden"
               />
               <div
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                  form.audienceType === type
-                    ? "border-[#2B5BA8]"
-                    : "border-[#D1D5DB]"
+                  form.audienceType === type ? "border-[#2B5BA8]" : "border-[#D1D5DB]"
                 }`}
               >
                 {form.audienceType === type && (
@@ -125,6 +174,22 @@ export function ContactForm() {
           ))}
         </div>
       </div>
+
+      {/* Company name (employer only) */}
+      {isEmployer && (
+        <div>
+          <label htmlFor="companyName" className={label}>Company Name *</label>
+          <input
+            id="companyName"
+            type="text"
+            placeholder="Acme Co."
+            value={form.companyName}
+            onChange={(e) => setForm((f) => ({ ...f, companyName: e.target.value }))}
+            className={`${field} ${errors.companyName ? errorField : ""}`}
+          />
+          {errors.companyName && <p className={errMsg}>{errors.companyName}</p>}
+        </div>
+      )}
 
       {/* Name */}
       <div>
@@ -187,13 +252,80 @@ export function ContactForm() {
         {errors.industry && <p className={errMsg}>{errors.industry}</p>}
       </div>
 
+      {/* Employer interest (employer only) */}
+      {isEmployer && (
+        <div>
+          <label className={label}>I&apos;m interested in... *</label>
+          <div className="space-y-2.5">
+            {INTEREST_OPTIONS.map((opt) => (
+              <label
+                key={opt.value}
+                className={`flex items-start gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
+                  form.interestType === opt.value
+                    ? "border-[#2B5BA8] bg-[#EEF4FF]"
+                    : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="interestType"
+                  value={opt.value}
+                  checked={form.interestType === opt.value}
+                  onChange={() => setForm((f) => ({ ...f, interestType: opt.value }))}
+                  className="hidden"
+                />
+                <div
+                  className={`mt-0.5 w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                    form.interestType === opt.value ? "border-[#2B5BA8]" : "border-[#D1D5DB]"
+                  }`}
+                >
+                  {form.interestType === opt.value && (
+                    <div className="w-2 h-2 rounded-full bg-[#2B5BA8]" />
+                  )}
+                </div>
+                <span className="text-sm text-[#374151]">
+                  <span className="font-semibold block">{opt.label}</span>
+                  <span className="text-[#6B7280]">{opt.description}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+          {errors.interestType && <p className={errMsg}>{errors.interestType}</p>}
+        </div>
+      )}
+
+      {/* Resume upload (student only) */}
+      {!isEmployer && (
+        <div>
+          <label htmlFor="resume" className={label}>Resume (optional)</label>
+          <input
+            ref={fileInputRef}
+            id="resume"
+            type="file"
+            accept=".pdf,.doc,.docx"
+            onChange={(e) => setResume(e.target.files?.[0] ?? null)}
+            className="block w-full text-sm text-[#374151] file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#EEF4FF] file:text-[#2B5BA8] hover:file:bg-[#dbe7fb] cursor-pointer"
+          />
+          <p className="text-xs text-[#9CA3AF] mt-1">PDF, DOC, or DOCX — up to 5 MB.</p>
+          {errors.resume && <p className={errMsg}>{errors.resume}</p>}
+        </div>
+      )}
+
       {/* Message */}
       <div>
-        <label htmlFor="message" className={label}>Comments / Message *</label>
+        <label htmlFor="message" className={label}>
+          {isEmployer
+            ? "Comments / Message *"
+            : "Tell us why you want a paid internship aside from earning a paycheck. *"}
+        </label>
         <textarea
           id="message"
           rows={4}
-          placeholder="Tell us about your organization, your hiring needs, or any questions you have..."
+          placeholder={
+            isEmployer
+              ? "Tell us about your organization, your hiring needs, or any questions you have..."
+              : "Share what you're hoping to learn, the skills you want to build, or the career you're curious about..."
+          }
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
           className={`${field} resize-none ${errors.message ? errorField : ""}`}

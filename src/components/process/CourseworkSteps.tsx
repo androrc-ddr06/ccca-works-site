@@ -36,8 +36,8 @@ export function CourseworkSteps() {
           <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
             Coursework &amp; Readiness
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8] mb-4">
-            Five Steps Before a Student Steps On Site
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2B5BA8] mb-4">
+            Five Steps Before a Student Becomes an Intern
           </h2>
           <p className="text-lg text-[#4B5563] max-w-2xl mx-auto leading-relaxed">
             Every CCCA Works! intern completes this pathway. By the time we

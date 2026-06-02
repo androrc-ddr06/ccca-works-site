@@ -75,9 +75,10 @@ export const partners: Partner[] = [
   },
   {
     id: "jatc-340",
-    name: "Plumbers, Pipefitters & HVAC Local 340 JATC",
+    name: "International Brotherhood of Electrical Workers",
     industry: "Education",
-    website: "https://www.340jatc.org/",
+    // TODO: confirm exact IBEW URL with client (Local 340 vs national).
+    website: "https://www.ibew.org/",
   },
   {
     id: "milestones",

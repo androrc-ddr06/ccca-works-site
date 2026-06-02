@@ -1,19 +1,58 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const schema = z.object({
+const base = {
   name: z.string().min(1, "Name is required"),
   phone: z.string().min(1, "Phone is required"),
   email: z.string().email("Valid email required"),
   industry: z.string().min(1, "Industry is required"),
-  audienceType: z.enum(["employer", "student"]),
   message: z.string().min(1, "Message is required"),
-});
+};
+
+const schema = z.discriminatedUnion("audienceType", [
+  z.object({
+    audienceType: z.literal("employer"),
+    ...base,
+    companyName: z.string().min(1, "Company name is required"),
+    interestType: z.enum([
+      "Career Exposure",
+      "Career Exploration",
+      "Career Preparation",
+      "Not sure",
+    ]),
+  }),
+  z.object({
+    audienceType: z.literal("student"),
+    ...base,
+  }),
+]);
+
+const MAX_RESUME_BYTES = 5 * 1024 * 1024;
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const data = schema.parse(body);
+    const formData = await req.formData();
+
+    // Collect text fields (everything except the file) into a plain object.
+    const fields: Record<string, string> = {};
+    for (const [key, value] of formData.entries()) {
+      if (typeof value === "string") fields[key] = value;
+    }
+    const data = schema.parse(fields);
+
+    // Resume attachment (student only).
+    let resume: { filename: string; content: string } | null = null;
+    const resumeFile = formData.get("resume");
+    if (resumeFile instanceof File && resumeFile.size > 0) {
+      if (resumeFile.size > MAX_RESUME_BYTES) {
+        return NextResponse.json(
+          { success: false, error: "Resume too large" },
+          { status: 400 }
+        );
+      }
+      const buffer = Buffer.from(await resumeFile.arrayBuffer());
+      resume = { filename: resumeFile.name, content: buffer.toString("base64") };
+    }
 
     const apiKey = process.env.RESEND_API_KEY;
     const toEmail =
@@ -23,10 +62,29 @@ export async function POST(req: NextRequest) {
     const fromEmail = process.env.FROM_EMAIL ?? "no-reply@cccaworks.org";
 
     if (!apiKey) {
-      // Dev mode: log and succeed without sending
-      console.log("[Contact Form] No RESEND_API_KEY — form data:", data);
+      // Dev mode: log and succeed without sending.
+      console.log("[Contact Form] No RESEND_API_KEY — form data:", data, {
+        resume: resume?.filename ?? null,
+      });
       return NextResponse.json({ success: true });
     }
+
+    const rows: [string, string][] = [
+      ["Name", data.name],
+      ...(data.audienceType === "employer"
+        ? ([
+            ["Company", data.companyName],
+            ["Interested In", data.interestType],
+          ] as [string, string][])
+        : []),
+      ["Phone", data.phone],
+      ["Email", data.email],
+      ["Industry", data.industry],
+      ["Type", data.audienceType === "employer" ? "Employer" : "Student"],
+      ...(data.audienceType === "student"
+        ? ([["Resume", resume ? resume.filename : "Not attached"]] as [string, string][])
+        : []),
+    ];
 
     const html = `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -34,13 +92,7 @@ export async function POST(req: NextRequest) {
           New ${data.audienceType === "employer" ? "Employer" : "Student"} Inquiry — CCCA Works!
         </h2>
         <table style="width:100%; border-collapse:collapse;">
-          ${[
-            ["Name", data.name],
-            ["Phone", data.phone],
-            ["Email", data.email],
-            ["Industry", data.industry],
-            ["Type", data.audienceType === "employer" ? "Employer" : "Student"],
-          ]
+          ${rows
             .map(
               ([k, v]) => `
             <tr>
@@ -72,6 +124,7 @@ export async function POST(req: NextRequest) {
         reply_to: data.email,
         subject: `[CCCA Works!] New ${data.audienceType === "employer" ? "Employer" : "Student"} Inquiry from ${data.name}`,
         html,
+        ...(resume ? { attachments: [resume] } : {}),
       }),
     });
 
