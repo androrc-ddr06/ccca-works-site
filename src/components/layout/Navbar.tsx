@@ -39,15 +39,15 @@ export function Navbar() {
             : "bg-transparent"
         )}
       >
-        <nav className="container-wide flex items-center justify-between h-32 py-2">
+        <nav className="container-wide flex items-center justify-between h-20 lg:h-40 py-2">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo-trimmed.png"
               alt="CCCA Works!"
-              width={360}
-              height={116}
-              className="h-28 w-auto"
+              width={644}
+              height={234}
+              className="h-12 sm:h-16 lg:h-32 w-auto"
               priority
             />
           </Link>
@@ -132,7 +132,7 @@ export function Navbar() {
               className="fixed right-0 top-0 bottom-0 z-50 w-80 bg-white shadow-2xl lg:hidden flex flex-col"
             >
               <div className="flex items-center justify-between p-6 border-b border-[#E5E7EB]">
-                <Image src="/logo.png" alt="CCCA Works!" width={260} height={84} className="h-20 w-auto" />
+                <Image src="/logo-trimmed.png" alt="CCCA Works!" width={644} height={234} className="h-12 w-auto" />
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="p-2 rounded-lg text-[#374151] hover:bg-[#F3F4F6]"

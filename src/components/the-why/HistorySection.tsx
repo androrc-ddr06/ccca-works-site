@@ -22,10 +22,10 @@ export function HistorySection() {
                 &rarr;
               </span>
               <Image
-                src="/logo.png"
+                src="/logo-trimmed.png"
                 alt="CCCA Works! logo"
-                width={260}
-                height={84}
+                width={644}
+                height={234}
                 className="w-32 sm:w-48 h-auto object-contain"
               />
             </div>

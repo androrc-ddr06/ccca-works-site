@@ -36,17 +36,17 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-sm text-white/90 mb-8 backdrop-blur-sm"
+          className="inline-flex items-center gap-2 max-w-full text-center bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs sm:text-sm text-white/90 mb-8 backdrop-blur-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-[#F5A623] animate-pulse" />
-          Now Accepting Employer Partners & Student Applications
+          <span className="w-2 h-2 rounded-full bg-[#F5A623] animate-pulse shrink-0" />
+          Now Accepting Employer Partners &amp; Student Applications
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight text-balance mb-6"
+          className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight text-balance mb-6"
         >
           Connecting{" "}
           <span className="text-[#F5A623]">Talent</span>

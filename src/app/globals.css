@@ -42,6 +42,9 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevent stray sub-pixel/decorative bleed from causing horizontal scroll
+       on mobile. Inner scrollers (e.g. wide tables) use their own overflow-x. */
+    overflow-x: clip;
   }
 
   body {
@@ -49,6 +52,7 @@
     color: var(--color-neutral-800);
     font-family: var(--font-sans);
     line-height: 1.6;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {

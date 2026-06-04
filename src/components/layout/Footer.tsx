@@ -10,11 +10,11 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/logo.png"
+              src="/logo-trimmed.png"
               alt="CCCA Works!"
-              width={150}
-              height={48}
-              className="h-12 w-auto brightness-0 invert mb-4"
+              width={644}
+              height={234}
+              className="h-14 w-auto brightness-0 invert mb-4"
             />
             <p className="text-blue-200 text-sm leading-relaxed max-w-xs">
               Closing the gap between high school and successful entry into the workforce.

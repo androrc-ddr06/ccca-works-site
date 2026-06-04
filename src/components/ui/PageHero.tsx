@@ -7,7 +7,7 @@ interface PageHeroProps {
 
 export function PageHero({ title, subtitle }: PageHeroProps) {
   return (
-    <section className="bg-[#2B5BA8] py-20 lg:py-28">
+    <section className="bg-[#2B5BA8] pt-28 lg:pt-48 pb-20 lg:pb-28">
       <div className="container-wide text-center">
         <FadeIn>
           <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
