@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { Button } from "@/components/ui/Button";
 
@@ -31,12 +32,18 @@ export function AudienceCTA() {
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {/* Employers */}
           <FadeIn direction="left">
-            <div className="bg-[#2B5BA8] rounded-3xl p-8 lg:p-10 h-full flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/15 mb-6">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+            <div className="bg-[#2B5BA8] rounded-3xl overflow-hidden h-full flex flex-col">
+              <div className="relative h-48 lg:h-56">
+                <Image
+                  src="/media/photos/career-fair.jpg"
+                  alt="A CCCA Works! industry partner meeting students at a career fair"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2B5BA8] via-[#2B5BA8]/20 to-transparent" />
               </div>
+              <div className="p-8 lg:p-10 pt-6 flex flex-col flex-1">
               <h3 className="text-2xl font-bold text-white mb-3">For Employers</h3>
               <p className="text-blue-200 mb-6 leading-relaxed">
                 Build your talent pipeline with motivated, career-focused students while we handle all the HR complexity.
@@ -57,18 +64,24 @@ export function AudienceCTA() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Button>
+              </div>
             </div>
           </FadeIn>
 
           {/* Students */}
           <FadeIn direction="right">
-            <div className="bg-white border-2 border-[#F5A623] rounded-3xl p-8 lg:p-10 h-full flex flex-col">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#FFF8E7] mb-6">
-                <svg className="w-6 h-6 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                </svg>
+            <div className="bg-white border-2 border-[#F5A623] rounded-3xl overflow-hidden h-full flex flex-col">
+              <div className="relative h-48 lg:h-56">
+                <Image
+                  src="/media/photos/interns-onsite.jpg"
+                  alt="Two CCCA Works! student interns in safety gear at a construction job site"
+                  fill
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  className="object-cover"
+                  style={{ objectPosition: "center 30%" }}
+                />
               </div>
+              <div className="p-8 lg:p-10 pt-6 flex flex-col flex-1">
               <h3 className="text-2xl font-bold text-[#2B5BA8] mb-3">For Students</h3>
               <p className="text-[#374151] mb-6 leading-relaxed">
                 Gain real work experience, earn a paycheck, and launch your career while still in school.
@@ -89,6 +102,7 @@ export function AudienceCTA() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Button>
+              </div>
             </div>
           </FadeIn>
         </div>

@@ -5,6 +5,7 @@ import { BenefitsTable } from "@/components/services/BenefitsTable";
 import { ProcessSteps } from "@/components/services/ProcessSteps";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
+import { ImageBanner } from "@/components/ui/ImageBanner";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -40,6 +41,15 @@ export default function ServicesPage() {
           </StaggerChildren>
         </div>
       </section>
+
+      <ImageBanner
+        src="/media/photos/it-class-group.jpg"
+        alt="CCCA Works! students collaborating on a hands-on technology project"
+        eyebrow="Career-Ready Talent"
+        title="Pre-screened students, ready to contribute from day one."
+        caption="We handle the screening, training, and compliance — you get motivated talent."
+        position="center 40%"
+      />
 
       <BenefitsTable />
       <ProcessSteps />

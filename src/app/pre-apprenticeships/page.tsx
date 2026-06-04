@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ImageBanner } from "@/components/ui/ImageBanner";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StaggerChildren, StaggerItem } from "@/components/animations/StaggerChildren";
 import { CONTACT_INFO } from "@/lib/constants";
@@ -72,8 +73,17 @@ export default function PreApprenticeshipsPage() {
         </div>
       </section>
 
+      <ImageBanner
+        src="/media/photos/welder-arc.jpg"
+        alt="A CCCA Works! student welding in a fabrication shop"
+        eyebrow="Earn While You Learn"
+        title="From high school straight into the trades."
+        caption="Pre-apprenticeships turn hands-on training into a debt-free path to a skilled career."
+        position="center 40%"
+      />
+
       {/* Timeline */}
-      <section className="section-padding bg-[#F9FAFB] pt-0">
+      <section className="section-padding bg-[#F9FAFB]">
         <div className="container-wide">
           <FadeIn className="text-center mb-12 max-w-3xl mx-auto">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
