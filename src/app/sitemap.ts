@@ -9,8 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/services", priority: 0.8 },
     { url: "/partners", priority: 0.7 },
     { url: "/process", priority: 0.7 },
+    { url: "/pre-apprenticeships", priority: 0.7 },
     { url: "/contact", priority: 0.9 },
     { url: "/media", priority: 0.6 },
+    { url: "/documents", priority: 0.6 },
+    { url: "/board", priority: 0.5 },
   ];
 
   return pages.map(({ url, priority }) => ({

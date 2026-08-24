@@ -45,7 +45,7 @@ export function ImageBanner({
               <div className="container-wide pb-10 lg:pb-16">
                 <FadeIn>
                   {eyebrow && (
-                    <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+                    <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
                       {eyebrow}
                     </p>
                   )}

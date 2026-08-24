@@ -33,13 +33,13 @@ export function CourseworkSteps() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <FadeIn className="text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Coursework &amp; Readiness
           </p>
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-[#2B5BA8] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-brand-blue mb-4">
             Five Steps Before a Student Becomes an Intern
           </h2>
-          <p className="text-lg text-[#4B5563] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
             Every CCCA Works! intern completes this pathway. By the time we
             connect them to an employer, they have already done the work.
           </p>
@@ -51,18 +51,18 @@ export function CourseworkSteps() {
               <div className="flex gap-6 lg:gap-8 pb-10 last:pb-0 relative">
                 {i < steps.length - 1 && (
                   <div
-                    className="absolute left-7 lg:left-8 top-16 bottom-0 w-0.5 bg-[#EEF4FF]"
+                    className="absolute left-7 lg:left-8 top-16 bottom-0 w-0.5 bg-brand-blue-pale"
                     aria-hidden="true"
                   />
                 )}
-                <div className="shrink-0 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-[#1E3F7A] text-[#F5A623] flex items-center justify-center font-bold font-display text-xl lg:text-2xl shadow-md">
+                <div className="shrink-0 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-brand-blue-dark text-brand-gold flex items-center justify-center font-bold font-display text-xl lg:text-2xl shadow-md">
                   {step.number}
                 </div>
                 <div className="flex-1 pt-2">
-                  <h3 className="text-xl lg:text-2xl font-bold text-[#1E3F7A] mb-2">
+                  <h3 className="text-xl lg:text-2xl font-bold text-brand-blue-dark mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-[#4B5563] leading-relaxed">{step.body}</p>
+                  <p className="text-neutral-600 leading-relaxed">{step.body}</p>
                 </div>
               </div>
             </FadeIn>

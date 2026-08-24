@@ -31,16 +31,16 @@ const steps = [
 
 export function ProcessSnippet() {
   return (
-    <section className="section-padding bg-[#EEF4FF]">
+    <section className="section-padding bg-brand-blue-pale">
       <div className="container-wide">
         <FadeIn className="text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             The Process
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue mb-4">
             How a Student Becomes Intern-Ready
           </h2>
-          <p className="text-lg text-[#4B5563] max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             Every CCCA Works! intern completes a structured pathway of
             coursework, exploration, and evaluation before stepping onto a
             partner&rsquo;s job site.
@@ -51,13 +51,13 @@ export function ProcessSnippet() {
           {steps.map((step) => (
             <StaggerItem key={step.number}>
               <div className="bg-white rounded-2xl p-6 shadow-[var(--shadow-card)] h-full">
-                <div className="text-4xl font-bold text-[#F5A623] font-display leading-none mb-3">
+                <div className="text-4xl font-bold text-brand-gold font-display leading-none mb-3">
                   {step.number}
                 </div>
-                <h3 className="text-lg font-bold text-[#1E3F7A] mb-2">
+                <h3 className="text-lg font-bold text-brand-blue-dark mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-[#4B5563] leading-relaxed">
+                <p className="text-sm text-neutral-600 leading-relaxed">
                   {step.description}
                 </p>
               </div>

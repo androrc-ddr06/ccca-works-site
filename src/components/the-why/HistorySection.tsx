@@ -16,7 +16,7 @@ export function HistorySection() {
                 className="w-28 h-28 sm:w-40 sm:h-40 rounded-2xl shadow-md object-contain"
               />
               <span
-                className="text-4xl sm:text-5xl font-bold text-[#F5A623] shrink-0"
+                className="text-4xl sm:text-5xl font-bold text-brand-gold shrink-0"
                 aria-hidden="true"
               >
                 &rarr;
@@ -29,16 +29,16 @@ export function HistorySection() {
                 className="w-32 sm:w-48 h-auto object-contain"
               />
             </div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
               Our History
             </p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8]">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue">
               How CCCA Works! Came Together
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="prose-content space-y-6 text-[#374151] leading-relaxed text-lg">
+            <div className="prose-content space-y-6 text-neutral-700 leading-relaxed text-lg">
               <p>
                 Before John Pellman joined forces with Kevin Dobson, Founder
                 and Executive Director of{" "}
@@ -46,7 +46,7 @@ export function HistorySection() {
                   href="http://capcca.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2B5BA8] underline hover:text-[#F5A623] transition-colors"
+                  className="text-brand-blue underline hover:text-brand-gold transition-colors"
                 >
                   Capital College &amp; Career Academy
                 </a>
@@ -56,7 +56,7 @@ export function HistorySection() {
                   href="https://www.proquest.com/openview/b526ff7fa46af479809955ef890c106a/1?pq-origsite=gscholar&cbl=18750&diss=y"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2B5BA8] underline hover:text-[#F5A623] transition-colors"
+                  className="text-brand-blue underline hover:text-brand-gold transition-colors"
                 >
                   Why Am I Here? Making Career Education a Focal Point in
                   Secondary Education
@@ -71,7 +71,7 @@ export function HistorySection() {
                   href="https://en.wikipedia.org/wiki/Social_capital"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2B5BA8] underline hover:text-[#F5A623] transition-colors"
+                  className="text-brand-blue underline hover:text-brand-gold transition-colors"
                 >
                   social capital
                 </a>
@@ -98,16 +98,16 @@ export function HistorySection() {
                 bringing on interns.
               </p>
 
-              <p className="italic text-[#1E3F7A] font-semibold">
+              <p className="italic text-brand-blue-dark font-semibold">
                 As we always say, we cannot do this work without you.
               </p>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-10 pt-8 border-t border-[#E5E7EB]">
-              <p className="text-[#1E3F7A] font-bold text-lg">John Pellman</p>
-              <p className="text-[#6B7280] text-sm">Founder &amp; CEO · May 2026</p>
+            <div className="mt-10 pt-8 border-t border-neutral-200">
+              <p className="text-brand-blue-dark font-bold text-lg">John Pellman</p>
+              <p className="text-neutral-500 text-sm">Founder &amp; CEO · May 2026</p>
             </div>
           </FadeIn>
         </div>

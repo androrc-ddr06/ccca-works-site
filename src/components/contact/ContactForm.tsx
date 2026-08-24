@@ -45,12 +45,19 @@ const INTEREST_OPTIONS: { value: EmployerInterest; label: string; description: s
 ];
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
+const ALLOWED_RESUME_TYPES = [
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+];
 
 export function ContactForm() {
   const [form, setForm] = useState<ContactFormData>(emptyForm);
   const [resume, setResume] = useState<File | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData | "resume", string>>>({});
+  // Honeypot — real users never see or fill this; bots that auto-fill get dropped.
+  const [honeypot, setHoneypot] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isEmployer = form.audienceType === "employer";
@@ -67,8 +74,12 @@ export function ContactForm() {
       if (!form.companyName.trim()) e.companyName = "Company name is required";
       if (!form.interestType) e.interestType = "Please choose an option";
     }
-    if (resume && resume.size > MAX_RESUME_BYTES) {
-      e.resume = "File is too large (max 5 MB)";
+    if (resume) {
+      if (resume.size > MAX_RESUME_BYTES) {
+        e.resume = "File is too large (max 5 MB)";
+      } else if (!ALLOWED_RESUME_TYPES.includes(resume.type)) {
+        e.resume = "Please upload a PDF, DOC, or DOCX file";
+      }
     }
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -86,6 +97,7 @@ export function ContactForm() {
       body.append("industry", form.industry);
       body.append("audienceType", form.audienceType);
       body.append("message", form.message);
+      body.append("company_website", honeypot); // honeypot
       if (isEmployer) {
         body.append("companyName", form.companyName);
         body.append("interestType", form.interestType);
@@ -107,29 +119,49 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center">
+      <div
+        role="alert"
+        aria-live="polite"
+        className="bg-green-50 border border-green-200 rounded-2xl p-8 text-center"
+      >
         <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg aria-hidden="true" className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
         <h3 className="text-xl font-bold text-green-800 mb-2">Message Sent!</h3>
         <p className="text-green-700 text-sm">
-          Thank you for reaching out. We&apos;ll be in touch within 1 business day.
+          {isEmployer
+            ? "Thank you for your interest in partnering with us. Our team will reach out within 1 business day to talk through next steps."
+            : "Thank you for applying! We'll review your submission and email you within 1 business day with your next steps — keep an eye on your inbox."}
         </p>
       </div>
     );
   }
 
-  const field = "block w-full rounded-xl border border-[#D1D5DB] bg-white px-4 py-3 text-sm text-[#1F2937] placeholder-[#9CA3AF] focus:border-[#2B5BA8] focus:ring-2 focus:ring-[#2B5BA8]/20 outline-none transition-all";
+  const field = "block w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-sm text-neutral-800 placeholder-neutral-400 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 outline-none transition-all";
   const errorField = "border-red-400 focus:border-red-400 focus:ring-red-100";
-  const label = "block text-sm font-semibold text-[#374151] mb-1.5";
+  const label = "block text-sm font-semibold text-neutral-700 mb-1.5";
   const errMsg = "text-xs text-red-500 mt-1";
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      {/* Honeypot: hidden from sighted + assistive users; only bots fill it. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden" style={{ position: "absolute" }}>
+        <label htmlFor="company_website">Company website (leave blank)</label>
+        <input
+          id="company_website"
+          type="text"
+          name="company_website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
+
       {status === "error" && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">
+        <div role="alert" className="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700">
           Something went wrong. Please try again or email us directly at{" "}
           <a href="mailto:info@cccaworks.org" className="underline font-medium">
             info@cccaworks.org
@@ -146,8 +178,8 @@ export function ContactForm() {
               key={type}
               className={`flex-1 flex items-center gap-2.5 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
                 form.audienceType === type
-                  ? "border-[#2B5BA8] bg-[#EEF4FF]"
-                  : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+                  ? "border-brand-blue bg-brand-blue-pale"
+                  : "border-neutral-200 hover:border-neutral-300"
               }`}
             >
               <input
@@ -160,14 +192,14 @@ export function ContactForm() {
               />
               <div
                 className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                  form.audienceType === type ? "border-[#2B5BA8]" : "border-[#D1D5DB]"
+                  form.audienceType === type ? "border-brand-blue" : "border-neutral-300"
                 }`}
               >
                 {form.audienceType === type && (
-                  <div className="w-2 h-2 rounded-full bg-[#2B5BA8]" />
+                  <div className="w-2 h-2 rounded-full bg-brand-blue" />
                 )}
               </div>
-              <span className="text-sm font-medium capitalize text-[#374151]">
+              <span className="text-sm font-medium capitalize text-neutral-700">
                 {type === "employer" ? "An Employer" : "A Student"}
               </span>
             </label>
@@ -183,11 +215,15 @@ export function ContactForm() {
             id="companyName"
             type="text"
             placeholder="Acme Co."
+            autoComplete="organization"
+            aria-required={true}
+            aria-invalid={!!errors.companyName}
+            aria-describedby={errors.companyName ? "companyName-error" : undefined}
             value={form.companyName}
             onChange={(e) => setForm((f) => ({ ...f, companyName: e.target.value }))}
             className={`${field} ${errors.companyName ? errorField : ""}`}
           />
-          {errors.companyName && <p className={errMsg}>{errors.companyName}</p>}
+          {errors.companyName && <p id="companyName-error" className={errMsg}>{errors.companyName}</p>}
         </div>
       )}
 
@@ -198,11 +234,15 @@ export function ContactForm() {
           id="name"
           type="text"
           placeholder="Jane Smith"
+          autoComplete="name"
+          aria-required={true}
+          aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "name-error" : undefined}
           value={form.name}
           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
           className={`${field} ${errors.name ? errorField : ""}`}
         />
-        {errors.name && <p className={errMsg}>{errors.name}</p>}
+        {errors.name && <p id="name-error" className={errMsg}>{errors.name}</p>}
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
@@ -213,11 +253,15 @@ export function ContactForm() {
             id="phone"
             type="tel"
             placeholder="(555) 000-0000"
+            autoComplete="tel"
+            aria-required={true}
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "phone-error" : undefined}
             value={form.phone}
             onChange={(e) => setForm((f) => ({ ...f, phone: formatPhone(e.target.value) }))}
             className={`${field} ${errors.phone ? errorField : ""}`}
           />
-          {errors.phone && <p className={errMsg}>{errors.phone}</p>}
+          {errors.phone && <p id="phone-error" className={errMsg}>{errors.phone}</p>}
         </div>
 
         {/* Email */}
@@ -227,11 +271,15 @@ export function ContactForm() {
             id="email"
             type="email"
             placeholder="jane@company.com"
+            autoComplete="email"
+            aria-required={true}
+            aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "email-error" : undefined}
             value={form.email}
             onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
             className={`${field} ${errors.email ? errorField : ""}`}
           />
-          {errors.email && <p className={errMsg}>{errors.email}</p>}
+          {errors.email && <p id="email-error" className={errMsg}>{errors.email}</p>}
         </div>
       </div>
 
@@ -240,6 +288,9 @@ export function ContactForm() {
         <label htmlFor="industry" className={label}>Industry / Sector *</label>
         <select
           id="industry"
+          aria-required={true}
+          aria-invalid={!!errors.industry}
+          aria-describedby={errors.industry ? "industry-error" : undefined}
           value={form.industry}
           onChange={(e) => setForm((f) => ({ ...f, industry: e.target.value }))}
           className={`${field} ${errors.industry ? errorField : ""}`}
@@ -249,7 +300,7 @@ export function ContactForm() {
             <option key={ind} value={ind}>{ind}</option>
           ))}
         </select>
-        {errors.industry && <p className={errMsg}>{errors.industry}</p>}
+        {errors.industry && <p id="industry-error" className={errMsg}>{errors.industry}</p>}
       </div>
 
       {/* Employer interest (employer only) */}
@@ -262,8 +313,8 @@ export function ContactForm() {
                 key={opt.value}
                 className={`flex items-start gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
                   form.interestType === opt.value
-                    ? "border-[#2B5BA8] bg-[#EEF4FF]"
-                    : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+                    ? "border-brand-blue bg-brand-blue-pale"
+                    : "border-neutral-200 hover:border-neutral-300"
                 }`}
               >
                 <input
@@ -276,16 +327,16 @@ export function ContactForm() {
                 />
                 <div
                   className={`mt-0.5 w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
-                    form.interestType === opt.value ? "border-[#2B5BA8]" : "border-[#D1D5DB]"
+                    form.interestType === opt.value ? "border-brand-blue" : "border-neutral-300"
                   }`}
                 >
                   {form.interestType === opt.value && (
-                    <div className="w-2 h-2 rounded-full bg-[#2B5BA8]" />
+                    <div className="w-2 h-2 rounded-full bg-brand-blue" />
                   )}
                 </div>
-                <span className="text-sm text-[#374151]">
+                <span className="text-sm text-neutral-700">
                   <span className="font-semibold block">{opt.label}</span>
-                  <span className="text-[#6B7280]">{opt.description}</span>
+                  <span className="text-neutral-500">{opt.description}</span>
                 </span>
               </label>
             ))}
@@ -303,11 +354,13 @@ export function ContactForm() {
             id="resume"
             type="file"
             accept=".pdf,.doc,.docx"
+            aria-invalid={!!errors.resume}
+            aria-describedby={errors.resume ? "resume-help resume-error" : "resume-help"}
             onChange={(e) => setResume(e.target.files?.[0] ?? null)}
-            className="block w-full text-sm text-[#374151] file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-[#EEF4FF] file:text-[#2B5BA8] hover:file:bg-[#dbe7fb] cursor-pointer"
+            className="block w-full text-sm text-neutral-700 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-brand-blue-pale file:text-brand-blue hover:file:bg-[#dbe7fb] cursor-pointer"
           />
-          <p className="text-xs text-[#9CA3AF] mt-1">PDF, DOC, or DOCX — up to 5 MB.</p>
-          {errors.resume && <p className={errMsg}>{errors.resume}</p>}
+          <p id="resume-help" className="text-xs text-neutral-400 mt-1">PDF, DOC, or DOCX — up to 5 MB.</p>
+          {errors.resume && <p id="resume-error" className={errMsg}>{errors.resume}</p>}
         </div>
       )}
 
@@ -321,16 +374,20 @@ export function ContactForm() {
         <textarea
           id="message"
           rows={4}
+          maxLength={5000}
           placeholder={
             isEmployer
               ? "Tell us about your organization, your hiring needs, or any questions you have..."
               : "Share what you're hoping to learn, the skills you want to build, or the career you're curious about..."
           }
+          aria-required={true}
+          aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "message-error" : undefined}
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
           className={`${field} resize-none ${errors.message ? errorField : ""}`}
         />
-        {errors.message && <p className={errMsg}>{errors.message}</p>}
+        {errors.message && <p id="message-error" className={errMsg}>{errors.message}</p>}
       </div>
 
       <Button

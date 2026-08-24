@@ -18,9 +18,9 @@ const iconPaths: Record<string, React.ReactNode> = {
 export function ServiceCard({ service }: { service: Service }) {
   return (
     <div className="bg-white rounded-2xl p-8 shadow-[var(--shadow-card)] group hover:shadow-[var(--shadow-card-hover)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-      <div className="w-14 h-14 rounded-2xl bg-[#EEF4FF] flex items-center justify-center mb-6 group-hover:bg-[#2B5BA8] transition-colors duration-300 shrink-0">
+      <div className="w-14 h-14 rounded-2xl bg-brand-blue-pale flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors duration-300 shrink-0">
         <svg
-          className="w-7 h-7 text-[#2B5BA8] group-hover:text-white transition-colors duration-300"
+          className="w-7 h-7 text-brand-blue group-hover:text-white transition-colors duration-300"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -28,12 +28,12 @@ export function ServiceCard({ service }: { service: Service }) {
           {iconPaths[service.icon]}
         </svg>
       </div>
-      <h3 className="text-xl font-bold text-[#1F2937] mb-3">{service.title}</h3>
-      <p className="text-[#6B7280] leading-relaxed text-sm mb-5 flex-1">{service.description}</p>
+      <h3 className="text-xl font-bold text-neutral-800 mb-3">{service.title}</h3>
+      <p className="text-neutral-500 leading-relaxed text-sm mb-5 flex-1">{service.description}</p>
       <ul className="space-y-2 mt-auto">
         {service.bullets.map((bullet) => (
-          <li key={bullet} className="flex items-start gap-2 text-sm text-[#374151]">
-            <svg className="w-4 h-4 text-[#F5A623] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+          <li key={bullet} className="flex items-start gap-2 text-sm text-neutral-700">
+            <svg className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
             </svg>
             {bullet}

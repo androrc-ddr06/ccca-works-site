@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/Button";
 
 export function PartnerCTA() {
   return (
-    <section className="bg-[#F5A623] py-16">
+    <section className="bg-brand-gold py-16">
       <div className="container-wide text-center">
         <FadeIn>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1E3F7A] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue-dark mb-4">
             Ready to Partner With Us?
           </h2>
-          <p className="text-[#1E3F7A]/80 max-w-xl mx-auto mb-8 text-lg">
+          <p className="text-brand-blue-dark/80 max-w-xl mx-auto mb-8 text-lg">
             Join our growing network of employer partners and start building your talent pipeline today.
           </p>
           <Button href="/contact" variant="secondary" size="lg">

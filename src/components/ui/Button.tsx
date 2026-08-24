@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -23,13 +23,13 @@ interface ButtonProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-[#F5A623] text-[#1F2937] hover:bg-[#D4890A] font-semibold shadow-sm",
+    "bg-brand-gold text-neutral-800 hover:bg-brand-gold-dark font-semibold shadow-sm",
   secondary:
-    "bg-[#2B5BA8] text-white hover:bg-[#1E3F7A] font-semibold shadow-sm",
+    "bg-brand-blue text-white hover:bg-brand-blue-dark font-semibold shadow-sm",
   outline:
-    "border-2 border-white text-white hover:bg-white hover:text-[#2B5BA8] font-semibold",
+    "border-2 border-white text-white hover:bg-white hover:text-brand-blue font-semibold",
   ghost:
-    "text-[#2B5BA8] hover:bg-[#EEF4FF] font-medium",
+    "text-brand-blue hover:bg-brand-blue-pale font-medium",
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -58,9 +58,10 @@ export function Button({
     className
   );
 
+  const reduce = useReducedMotion();
   const motionProps = {
-    whileHover: disabled ? {} : { scale: 1.03 },
-    whileTap: disabled ? {} : { scale: 0.97 },
+    whileHover: disabled || reduce ? {} : { scale: 1.03 },
+    whileTap: disabled || reduce ? {} : { scale: 0.97 },
     transition: { type: "spring" as const, stiffness: 400, damping: 20 },
   };
 

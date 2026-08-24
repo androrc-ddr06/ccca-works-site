@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface FadeInProps {
@@ -26,7 +26,13 @@ export function FadeIn({
   direction = "up",
   className,
 }: FadeInProps) {
+  const reduce = useReducedMotion();
   const { x, y } = directionMap[direction];
+
+  // Respect prefers-reduced-motion: render at the final state, no transition.
+  if (reduce) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

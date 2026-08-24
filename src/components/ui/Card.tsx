@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -12,13 +12,14 @@ interface CardProps {
 }
 
 export function Card({ children, className, hover = false, as: Tag = "div" }: CardProps) {
+  const reduce = useReducedMotion();
   const base = cn(
     "bg-white rounded-2xl p-6 shadow-[var(--shadow-card)]",
     hover && "transition-shadow duration-300",
     className
   );
 
-  if (hover) {
+  if (hover && !reduce) {
     return (
       <motion.div
         whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgb(43 91 168 / 0.12), 0 10px 10px -5px rgb(43 91 168 / 0.06)" }}

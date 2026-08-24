@@ -25,10 +25,10 @@ export default function ServicesPage() {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <FadeIn className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
               What We Offer
             </p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8]">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue">
               Full-Service Internship Management
             </h2>
           </FadeIn>

@@ -8,14 +8,14 @@ export function PhotoGallery() {
   if (photos.length === 0) return null;
 
   return (
-    <section className="section-padding bg-[#F9FAFB]">
+    <section className="section-padding bg-neutral-50">
       <div className="container-wide">
         <FadeIn className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             In the Field
           </p>
-          <h2 className="text-3xl font-bold text-[#2B5BA8]">Photo Gallery</h2>
-          <p className="text-base text-[#4B5563] mt-3 max-w-2xl">
+          <h2 className="text-3xl font-bold text-brand-blue">Photo Gallery</h2>
+          <p className="text-base text-neutral-600 mt-3 max-w-2xl">
             Moments from CCCA Works! events, job shadows, and intern placements.
           </p>
         </FadeIn>

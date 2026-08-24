@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/home/HeroSection";
 import { MissionStrip } from "@/components/home/MissionStrip";
 import { AudienceCTA } from "@/components/home/AudienceCTA";
 import { PartnerLogos } from "@/components/home/PartnerLogos";
 import { ProcessSnippet } from "@/components/home/ProcessSnippet";
 import { ImageBanner } from "@/components/ui/ImageBanner";
+
+export const metadata: Metadata = {
+  description:
+    "CCCA Works! transitions young people into the world of work through paid internships — a direct pipeline to high-quality careers and apprenticeships, with employers covered by our Employer of Record model.",
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

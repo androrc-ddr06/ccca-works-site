@@ -53,7 +53,7 @@ export default function PreApprenticeshipsPage() {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="max-w-3xl mx-auto">
-            <FadeIn className="space-y-6 text-lg text-[#374151] leading-relaxed">
+            <FadeIn className="space-y-6 text-lg text-neutral-700 leading-relaxed">
               <p>
                 CCCA Works! is developing pre-apprenticeship and apprenticeship
                 programs. At present we have a Pre-Apprenticeship agreement with
@@ -83,13 +83,13 @@ export default function PreApprenticeshipsPage() {
       />
 
       {/* Timeline */}
-      <section className="section-padding bg-[#F9FAFB]">
+      <section className="section-padding bg-neutral-50">
         <div className="container-wide">
           <FadeIn className="text-center mb-12 max-w-3xl mx-auto">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
               How We Got Here
             </p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8]">
+            <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue">
               California&rsquo;s Apprenticeship Expansion Since 2018
             </h2>
           </FadeIn>
@@ -98,14 +98,14 @@ export default function PreApprenticeshipsPage() {
             {timeline.map((item) => (
               <StaggerItem key={item.number}>
                 <Card hover className="flex gap-5 lg:gap-6 items-start">
-                  <div className="shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-[#1E3F7A] text-[#F5A623] flex items-center justify-center font-bold font-display text-lg lg:text-xl shadow-md">
+                  <div className="shrink-0 w-12 h-12 lg:w-14 lg:h-14 rounded-2xl bg-brand-blue-dark text-brand-gold flex items-center justify-center font-bold font-display text-lg lg:text-xl shadow-md">
                     {item.number}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg lg:text-xl font-bold text-[#1E3F7A] mb-2">
+                    <h3 className="text-lg lg:text-xl font-bold text-brand-blue-dark mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-[#4B5563] leading-relaxed">{item.body}</p>
+                    <p className="text-neutral-600 leading-relaxed">{item.body}</p>
                   </div>
                 </Card>
               </StaggerItem>
@@ -118,7 +118,7 @@ export default function PreApprenticeshipsPage() {
       <section className="section-padding bg-white">
         <div className="container-wide">
           <FadeIn>
-            <div className="bg-[#1E3F7A] rounded-3xl p-10 lg:p-14 text-center text-white">
+            <div className="bg-brand-blue-dark rounded-3xl p-10 lg:p-14 text-center text-white">
               <h2 className="text-2xl lg:text-3xl font-bold mb-4">
                 Partner With Us on the Future of Apprenticeships
               </h2>

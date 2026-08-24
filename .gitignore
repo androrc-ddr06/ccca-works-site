@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# iCloud Drive sync conflict copies ("Footer 2.tsx", "next-env.d 2.ts").
+# This project lives under Desktop, which iCloud syncs, so these appear on their
+# own. They are stale pre-edit duplicates that nothing imports, and committing
+# "next-env.d 2.ts" is what makes tsc report duplicate identifiers.
+* [0-9].ts
+* [0-9].tsx
+* [0-9].d.ts
+
+# Source media kept alongside the project but never served. public/ is what Next
+# ships; this is 50MB+ of originals that would live in a public repo forever.
+/Media/

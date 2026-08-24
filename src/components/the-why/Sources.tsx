@@ -46,22 +46,22 @@ const sourceGroups = [
 
 export function Sources() {
   return (
-    <section className="section-padding bg-[#F9FAFB]">
+    <section className="section-padding bg-neutral-50">
       <div className="container-wide">
         <FadeIn>
           <div className="max-w-3xl mx-auto">
             <details className="group bg-white rounded-2xl shadow-[var(--shadow-card)] overflow-hidden">
-              <summary className="cursor-pointer list-none px-8 py-6 flex items-center justify-between hover:bg-[#F9FAFB] transition-colors">
+              <summary className="cursor-pointer list-none px-8 py-6 flex items-center justify-between hover:bg-neutral-50 transition-colors">
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-1">
+                  <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-1">
                     Methodology
                   </p>
-                  <h3 className="text-xl lg:text-2xl font-bold text-[#1E3F7A]">
+                  <h3 className="text-xl lg:text-2xl font-bold text-brand-blue-dark">
                     Sources &amp; Further Reading
                   </h3>
                 </div>
                 <svg
-                  className="w-6 h-6 text-[#2B5BA8] transition-transform duration-300 group-open:rotate-180 shrink-0"
+                  className="w-6 h-6 text-brand-blue transition-transform duration-300 group-open:rotate-180 shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -75,17 +75,17 @@ export function Sources() {
                 </svg>
               </summary>
 
-              <div className="px-8 pb-8 space-y-8 border-t border-[#E5E7EB] pt-6">
+              <div className="px-8 pb-8 space-y-8 border-t border-neutral-200 pt-6">
                 {sourceGroups.map((group) => (
                   <div key={group.org}>
-                    <h4 className="font-bold text-[#1E3F7A] text-base mb-3">
+                    <h4 className="font-bold text-brand-blue-dark text-base mb-3">
                       {group.org}
                     </h4>
                     <ul className="space-y-2">
                       {group.items.map((item, i) => (
                         <li
                           key={i}
-                          className="text-sm text-[#4B5563] leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-[#F5A623] before:font-bold"
+                          className="text-sm text-neutral-600 leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-brand-gold before:font-bold"
                         >
                           {item}
                         </li>

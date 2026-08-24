@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV_LINKS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { PortalLoginBox } from "@/components/layout/PortalLoginBox";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -61,17 +62,17 @@ export function Navbar() {
                 className={cn(
                   "relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg",
                   pathname === link.href
-                    ? "text-[#2B5BA8]"
+                    ? "text-brand-blue"
                     : scrolled
-                    ? "text-[#374151] hover:text-[#2B5BA8] hover:bg-[#EEF4FF]"
-                    : "text-white hover:text-[#F5A623]"
+                    ? "text-neutral-700 hover:text-brand-blue hover:bg-brand-blue-pale"
+                    : "text-white hover:text-brand-gold"
                 )}
               >
                 {link.label}
                 {pathname === link.href && (
                   <motion.span
                     layoutId="nav-indicator"
-                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#F5A623] rounded-full"
+                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-gold rounded-full"
                   />
                 )}
               </Link>
@@ -80,6 +81,11 @@ export function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-3">
+            {/* Returning students and employers, not prospects — quieter than
+                the two conversion CTAs, but always reachable. */}
+            <PortalLoginBox
+              className={cn(!scrolled && "text-white hover:text-brand-gold hover:bg-white/10")}
+            />
             <Button href="/contact" variant="secondary" size="sm">
               Partner With Us
             </Button>
@@ -93,9 +99,11 @@ export function Navbar() {
             onClick={() => setMenuOpen((o) => !o)}
             className={cn(
               "lg:hidden flex flex-col gap-1.5 p-2 rounded-lg transition-colors",
-              scrolled ? "text-[#1F2937] hover:bg-[#F3F4F6]" : "text-white hover:bg-white/10"
+              scrolled ? "text-neutral-800 hover:bg-neutral-100" : "text-white hover:bg-white/10"
             )}
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             <motion.span
               animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
@@ -125,20 +133,21 @@ export function Navbar() {
               onClick={() => setMenuOpen(false)}
             />
             <motion.div
+              id="mobile-menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 26, stiffness: 220 }}
-              className="fixed right-0 top-0 bottom-0 z-50 w-80 bg-white shadow-2xl lg:hidden flex flex-col"
+              className="fixed right-0 top-0 bottom-0 z-50 w-80 max-w-[85vw] bg-white shadow-2xl lg:hidden flex flex-col"
             >
-              <div className="flex items-center justify-between p-6 border-b border-[#E5E7EB]">
+              <div className="flex items-center justify-between p-6 border-b border-neutral-200">
                 <Image src="/logo-trimmed.png" alt="CCCA Works!" width={644} height={234} className="h-9 w-auto" />
                 <button
                   onClick={() => setMenuOpen(false)}
-                  className="p-2 rounded-lg text-[#374151] hover:bg-[#F3F4F6]"
+                  className="p-2 rounded-lg text-neutral-700 hover:bg-neutral-100"
                   aria-label="Close menu"
                 >
-                  <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg aria-hidden="true" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
                   </svg>
                 </button>
@@ -157,8 +166,8 @@ export function Navbar() {
                       className={cn(
                         "block px-4 py-3 rounded-xl text-base font-medium transition-colors",
                         pathname === link.href
-                          ? "bg-[#EEF4FF] text-[#2B5BA8]"
-                          : "text-[#374151] hover:bg-[#F3F4F6]"
+                          ? "bg-brand-blue-pale text-brand-blue"
+                          : "text-neutral-700 hover:bg-neutral-100"
                       )}
                     >
                       {link.label}
@@ -167,13 +176,14 @@ export function Navbar() {
                 ))}
               </nav>
 
-              <div className="p-6 border-t border-[#E5E7EB] space-y-3">
+              <div className="p-6 border-t border-neutral-200 space-y-3">
                 <Button href="/contact" variant="secondary" size="md" className="w-full">
                   Partner With Us
                 </Button>
                 <Button href="/contact" variant="primary" size="md" className="w-full">
                   Apply Now
                 </Button>
+                <PortalLoginBox className="w-full justify-center" />
               </div>
             </motion.div>
           </>

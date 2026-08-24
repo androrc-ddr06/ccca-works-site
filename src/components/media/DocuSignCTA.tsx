@@ -3,10 +3,10 @@ import { DOCUSIGN_URL } from "@/lib/constants";
 
 export function DocuSignCTA() {
   return (
-    <section className="section-padding bg-[#EEF4FF]">
+    <section className="section-padding bg-brand-blue-pale">
       <div className="container-wide">
         <FadeIn>
-          <div className="bg-[#2B5BA8] rounded-3xl p-10 lg:p-14 text-center max-w-3xl mx-auto">
+          <div className="bg-brand-blue rounded-3xl p-10 lg:p-14 text-center max-w-3xl mx-auto">
             <div className="w-16 h-16 bg-white/15 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -22,7 +22,7 @@ export function DocuSignCTA() {
               href={DOCUSIGN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#F5A623] hover:bg-[#D4890A] text-[#1F2937] font-semibold px-8 py-4 rounded-xl transition-colors duration-200 shadow-lg mb-4"
+              className="inline-flex items-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-neutral-800 font-semibold px-8 py-4 rounded-xl transition-colors duration-200 shadow-lg mb-4"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />

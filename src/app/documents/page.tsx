@@ -23,7 +23,7 @@ export default function DocumentsPage() {
         subtitle="Access the agreements and resources that govern the CCCA Works! program."
       />
 
-      <section className="section-padding bg-[#F9FAFB]">
+      <section className="section-padding bg-neutral-50">
         <div className="container-wide space-y-14">
           {CATEGORY_ORDER.map((category) => {
             const docs = documents.filter((doc) => doc.category === category);
@@ -31,10 +31,10 @@ export default function DocumentsPage() {
             return (
               <div key={category}>
                 <FadeIn className="mb-8">
-                  <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+                  <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
                     Resources &amp; Forms
                   </p>
-                  <h2 className="text-3xl font-bold text-[#2B5BA8]">{category}</h2>
+                  <h2 className="text-3xl font-bold text-brand-blue">{category}</h2>
                 </FadeIn>
 
                 <StaggerChildren className="grid sm:grid-cols-2 gap-5">

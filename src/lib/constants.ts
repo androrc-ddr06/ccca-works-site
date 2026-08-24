@@ -13,6 +13,13 @@ export const NAV_LINKS = [
 export const DOCUSIGN_URL =
   process.env.NEXT_PUBLIC_DOCUSIGN_POWERFORM_URL ?? "#";
 
+// The CCCA Career Portal — students log work hours, employers confirm them.
+// A sibling app on its own subdomain of the same domain: one brand, but the two
+// deploy independently, and credentials are never typed on a page served from
+// this (public) repo. Override per-environment with NEXT_PUBLIC_PORTAL_URL.
+export const PORTAL_URL =
+  process.env.NEXT_PUBLIC_PORTAL_URL ?? "https://portal.cccaworks.org/login";
+
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/company/cccaworks",
   facebook: "https://www.facebook.com/cccaworks",

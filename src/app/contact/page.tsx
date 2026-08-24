@@ -42,11 +42,11 @@ export default function ContactPage() {
         subtitle="Whether you're an employer looking to partner or a student ready to apply — we'd love to hear from you."
       />
 
-      <section className="section-padding bg-[#F9FAFB]">
+      <section className="section-padding bg-neutral-50">
         <div className="container-wide">
           <div className="grid lg:grid-cols-5 gap-10 items-start">
             <FadeIn direction="left" className="lg:col-span-2">
-              <div className="bg-[#2B5BA8] rounded-3xl p-8 text-white sticky top-28">
+              <div className="bg-brand-blue rounded-3xl p-8 text-white sticky top-28">
                 <h2 className="text-2xl font-bold mb-2">Contact Information</h2>
                 <p className="text-blue-200 text-sm mb-8">
                   Reach us directly or fill out the form and we&apos;ll be in touch within 1 business day.
@@ -55,7 +55,7 @@ export default function ContactPage() {
                   {contactItems.map((item) => (
                     <li key={item.label} className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                        <svg className="w-5 h-5 text-[#F5A623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           {item.icon}
                         </svg>
                       </div>
@@ -73,8 +73,8 @@ export default function ContactPage() {
 
             <FadeIn direction="right" className="lg:col-span-3">
               <div className="bg-white rounded-3xl p-8 lg:p-10 shadow-[var(--shadow-card)]">
-                <h2 className="text-2xl font-bold text-[#1F2937] mb-1">Send Us a Message</h2>
-                <p className="text-[#6B7280] text-sm mb-7">
+                <h2 className="text-2xl font-bold text-neutral-800 mb-1">Send Us a Message</h2>
+                <p className="text-neutral-500 text-sm mb-7">
                   Tell us about yourself and we&apos;ll connect you with the right team.
                 </p>
                 <ContactForm />

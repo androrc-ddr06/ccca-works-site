@@ -15,13 +15,13 @@ export function PartnerVideos() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <FadeIn className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Industry Partners
           </p>
-          <h2 className="text-3xl font-bold text-[#2B5BA8]">
+          <h2 className="text-3xl font-bold text-brand-blue">
             Voices From the Field
           </h2>
-          <p className="text-base text-[#4B5563] mt-3 max-w-2xl">
+          <p className="text-base text-neutral-600 mt-3 max-w-2xl">
             Hear directly from the industry partners building the next
             generation of Sacramento&rsquo;s workforce.
           </p>
@@ -30,7 +30,7 @@ export function PartnerVideos() {
         <StaggerChildren className="grid sm:grid-cols-2 gap-6">
           {videos.map((video, i) => (
             <StaggerItem key={video.id ?? `pending-${i}`}>
-              <div className="relative aspect-video bg-[#1E3F7A] rounded-2xl overflow-hidden shadow-[var(--shadow-card)]">
+              <div className="relative aspect-video bg-brand-blue-dark rounded-2xl overflow-hidden shadow-[var(--shadow-card)]">
                 {video.id ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
@@ -42,7 +42,7 @@ export function PartnerVideos() {
                   />
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 text-white">
-                    <svg className="w-10 h-10 text-[#F5A623] mb-3" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-10 h-10 text-brand-gold mb-3" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z" />
                     </svg>
                     <p className="font-semibold">{video.title}</p>

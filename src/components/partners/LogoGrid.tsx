@@ -8,13 +8,13 @@ export function LogoGrid() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <FadeIn className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Our Network
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue mb-4">
             Our Partner Organizations
           </h2>
-          <p className="text-[#6B7280] max-w-xl mx-auto">
+          <p className="text-neutral-500 max-w-xl mx-auto">
             We work with organizations across industries who share a commitment to developing the next generation of professionals.
           </p>
         </FadeIn>
@@ -26,10 +26,10 @@ export function LogoGrid() {
                 href={partner.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border-2 border-[#E5E7EB] hover:border-[#2B5BA8]/40 hover:shadow-[var(--shadow-card)] transition-all duration-300 text-center"
+                className="group flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border-2 border-neutral-200 hover:border-brand-blue/40 hover:shadow-[var(--shadow-card)] transition-all duration-300 text-center"
               >
-                <div className="w-full h-16 bg-[#EEF4FF] rounded-xl flex items-center justify-center group-hover:bg-[#2B5BA8]/5 transition-colors">
-                  <span className="text-[#2B5BA8] font-bold text-xs px-3">
+                <div className="w-full h-16 bg-brand-blue-pale rounded-xl flex items-center justify-center group-hover:bg-brand-blue/5 transition-colors">
+                  <span className="text-brand-blue font-bold text-xs px-3">
                     {partner.name}
                   </span>
                 </div>

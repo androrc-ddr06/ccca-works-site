@@ -2,11 +2,11 @@ import { FadeIn } from "@/components/animations/FadeIn";
 
 export function EmployerHandoff() {
   return (
-    <section className="section-padding bg-[#1E3F7A] text-white">
+    <section className="section-padding bg-brand-blue-dark text-white">
       <div className="container-wide">
         <div className="max-w-3xl mx-auto text-center">
           <FadeIn>
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-4">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
               The Handoff
             </p>
             <h2 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight text-balance">

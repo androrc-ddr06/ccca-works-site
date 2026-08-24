@@ -46,10 +46,10 @@ export function EmployerAdvantages() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <FadeIn className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             For Employers
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue mb-4">
             Advantages of Hosting a CCCA Works! Intern
           </h2>
         </FadeIn>
@@ -57,10 +57,10 @@ export function EmployerAdvantages() {
         <StaggerChildren className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
           {advantages.map((adv) => (
             <StaggerItem key={adv.title}>
-              <div className="bg-[#F9FAFB] rounded-2xl p-8 h-full border-t-4 border-[#F5A623] hover:shadow-[var(--shadow-card-hover)] transition-shadow duration-300">
-                <div className="w-12 h-12 rounded-xl bg-[#1E3F7A] flex items-center justify-center mb-5">
+              <div className="bg-neutral-50 rounded-2xl p-8 h-full border-t-4 border-brand-gold hover:shadow-[var(--shadow-card-hover)] transition-shadow duration-300">
+                <div className="w-12 h-12 rounded-xl bg-brand-blue-dark flex items-center justify-center mb-5">
                   <svg
-                    className="w-6 h-6 text-[#F5A623]"
+                    className="w-6 h-6 text-brand-gold"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -68,10 +68,10 @@ export function EmployerAdvantages() {
                     {adv.icon}
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-[#1E3F7A] mb-3">
+                <h3 className="text-xl font-bold text-brand-blue-dark mb-3">
                   {adv.title}
                 </h3>
-                <p className="text-[#4B5563] leading-relaxed">{adv.body}</p>
+                <p className="text-neutral-600 leading-relaxed">{adv.body}</p>
               </div>
             </StaggerItem>
           ))}

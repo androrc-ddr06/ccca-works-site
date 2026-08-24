@@ -6,19 +6,19 @@ export function ProblemStatement() {
       <div className="container-wide">
         <div className="max-w-4xl mx-auto">
           <FadeIn className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-4">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-4">
               The Problem
             </p>
-            <h2 className="text-3xl lg:text-5xl font-bold text-[#1E3F7A] leading-tight text-balance">
+            <h2 className="text-3xl lg:text-5xl font-bold text-brand-blue-dark leading-tight text-balance">
               Paid internships should{" "}
-              <span className="text-[#F5A623]">not only</span> be for college
+              <span className="text-brand-gold">not only</span> be for college
               students
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="bg-[#1E3F7A] rounded-3xl p-10 lg:p-14 text-center text-white">
-              <div className="text-7xl lg:text-8xl font-bold text-[#F5A623] font-display leading-none mb-4">
+            <div className="bg-brand-blue-dark rounded-3xl p-10 lg:p-14 text-center text-white">
+              <div className="text-7xl lg:text-8xl font-bold text-brand-gold font-display leading-none mb-4">
                 35%
               </div>
               <p className="text-xl lg:text-2xl font-semibold mb-3">

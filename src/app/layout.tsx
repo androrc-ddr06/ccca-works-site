@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CONTACT_INFO, SOCIAL_LINKS } from "@/lib/constants";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -39,7 +40,34 @@ export const metadata: Metadata = {
     url: "https://www.cccaworks.org",
     siteName: "CCCA Works!",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "CCCA Works! | Workforce Development & Internship Placement",
+    description:
+      "Paid internships and a fully managed Employer of Record model connecting student talent with employer partners.",
+  },
   robots: { index: true, follow: true },
+};
+
+// Organization structured data for rich search results.
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "CCCA Works!",
+  alternateName: "Capra College Career Academy Works!",
+  url: "https://www.cccaworks.org",
+  logo: "https://www.cccaworks.org/logo.png",
+  description:
+    "Workforce development organization placing student interns with employer partners through a fully managed Employer of Record model.",
+  email: CONTACT_INFO.email,
+  telephone: "+1-916-234-0583",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sacramento",
+    addressRegion: "CA",
+    addressCountry: "US",
+  },
+  sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.facebook, SOCIAL_LINKS.instagram],
 };
 
 export default function RootLayout({
@@ -50,6 +78,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
       <body className="min-h-screen flex flex-col antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

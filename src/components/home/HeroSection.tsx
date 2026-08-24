@@ -18,6 +18,18 @@ const SLIDE_MS = 5000;
 
 export function HeroSection() {
   const [index, setIndex] = useState(0);
+  // Only mount the current slide + the next one up front; mount the rest
+  // just-in-time as the show advances. Keeps the initial mobile payload to two
+  // photos instead of all five, while leaving ~5s to load the upcoming slide.
+  const [mounted, setMounted] = useState<Set<number>>(() => new Set([0, 1 % heroImages.length]));
+
+  useEffect(() => {
+    setMounted((prev) => {
+      const next = (index + 1) % heroImages.length;
+      if (prev.has(index) && prev.has(next)) return prev;
+      return new Set(prev).add(index).add(next);
+    });
+  }, [index]);
 
   useEffect(() => {
     const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -29,7 +41,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#1E3F7A]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-blue-dark">
       {/* Looping photo background */}
       <div className="absolute inset-0">
         {heroImages.map((img, i) => {
@@ -45,22 +57,24 @@ export function HeroSection() {
                 scale: { duration: SLIDE_MS / 1000 + 1.6, ease: "linear" },
               }}
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                priority={i === 0}
-                sizes="100vw"
-                className="object-cover"
-                style={{ objectPosition: img.position }}
-              />
+              {mounted.has(i) && (
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  priority={i === 0}
+                  sizes="100vw"
+                  className="object-cover"
+                  style={{ objectPosition: img.position }}
+                />
+              )}
             </motion.div>
           );
         })}
       </div>
 
       {/* Branded scrim — dark enough for legible text, light enough to show the photos */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0F2347]/80 via-[#0F2347]/55 to-[#0F2347]/85" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0F2347]/80 via-[#0F2347]/62 to-[#0F2347]/85" />
 
       {/* Content */}
       <div className="relative z-10 container-wide text-center px-4 py-28">
@@ -70,7 +84,7 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
           className="inline-flex items-center gap-2 max-w-full text-center bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs sm:text-sm text-white/90 mb-8 backdrop-blur-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-[#F5A623] animate-pulse shrink-0" />
+          <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse shrink-0" />
           Now Accepting Employer Partners &amp; Student Applications
         </motion.div>
 
@@ -81,7 +95,7 @@ export function HeroSection() {
           className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight text-balance mb-6 [text-shadow:0_2px_18px_rgba(0,0,0,0.6)]"
         >
           Connecting{" "}
-          <span className="text-[#F5A623]">Talent</span>
+          <span className="text-brand-gold">Talent</span>
           <br />
           With Opportunity
         </motion.h1>
@@ -105,7 +119,7 @@ export function HeroSection() {
         >
           <Button href="/contact" variant="primary" size="lg">
             Partner With Us
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Button>
@@ -122,7 +136,7 @@ export function HeroSection() {
         >
           {["Workers' Comp Included", "Payroll Managed", "No Upfront Cost", "Flexible Terms"].map((item) => (
             <div key={item} className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-[#F5A623]" fill="currentColor" viewBox="0 0 20 20">
+              <svg aria-hidden="true" className="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
               </svg>
               {item}
@@ -131,14 +145,16 @@ export function HeroSection() {
         </motion.div>
 
         {/* Slide indicators */}
-        <div className="mt-12 flex items-center justify-center gap-2.5">
+        <div role="tablist" aria-label="Hero slides" className="mt-12 flex items-center justify-center gap-2.5">
           {heroImages.map((img, i) => (
             <button
               key={img.src}
+              role="tab"
+              aria-selected={i === index}
               onClick={() => setIndex(i)}
               aria-label={`Show slide ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === index ? "w-8 bg-[#F5A623]" : "w-2.5 bg-white/40 hover:bg-white/70"
+                i === index ? "w-8 bg-brand-gold" : "w-2.5 bg-white/40 hover:bg-white/70"
               }`}
             />
           ))}
@@ -157,7 +173,7 @@ export function HeroSection() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg aria-hidden="true" className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>

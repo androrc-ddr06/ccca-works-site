@@ -7,13 +7,13 @@ export function PartnerLogos() {
     <section className="section-padding bg-white">
       <div className="container-wide">
         <FadeIn className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Our Community
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue mb-4">
             Trusted By Leading Organizations
           </h2>
-          <p className="text-[#6B7280] max-w-xl mx-auto">
+          <p className="text-neutral-500 max-w-xl mx-auto">
             We partner with employers across industries who share our commitment to developing the next generation of professionals.
           </p>
         </FadeIn>
@@ -25,14 +25,14 @@ export function PartnerLogos() {
                 href={partner.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-[#E5E7EB] hover:border-[#2B5BA8]/30 hover:shadow-md transition-all duration-300"
+                className="group flex flex-col items-center justify-center gap-2 p-5 rounded-2xl border border-neutral-200 hover:border-brand-blue/30 hover:shadow-md transition-all duration-300"
               >
-                <div className="w-full h-12 bg-[#EEF4FF] rounded-lg flex items-center justify-center">
-                  <span className="text-[#2B5BA8] font-bold text-xs text-center px-2 leading-tight">
+                <div className="w-full h-12 bg-brand-blue-pale rounded-lg flex items-center justify-center">
+                  <span className="text-brand-blue font-bold text-xs text-center px-2 leading-tight">
                     {partner.name}
                   </span>
                 </div>
-                <span className="text-xs text-[#9CA3AF] uppercase tracking-wide group-hover:text-[#F5A623] transition-colors">
+                <span className="text-xs text-neutral-400 uppercase tracking-wide group-hover:text-brand-gold transition-colors">
                   {partner.industry}
                 </span>
               </a>

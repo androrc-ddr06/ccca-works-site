@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 type Tier = {
@@ -18,24 +18,24 @@ const tiers: Tier[] = [
     label: "California High School Freshmen",
     sub: "The starting cohort",
     bar: "100%",
-    fill: "bg-[#1E3F7A]",
-    countColor: "text-[#1E3F7A]",
+    fill: "bg-brand-blue-dark",
+    countColor: "text-brand-blue-dark",
   },
   {
     count: "~87",
     label: "Graduate from High School",
     sub: "87.5% on-time graduation rate",
     bar: "87%",
-    fill: "bg-[#2B5BA8]",
-    countColor: "text-[#2B5BA8]",
+    fill: "bg-brand-blue",
+    countColor: "text-brand-blue",
   },
   {
     count: "~62",
     label: "Enter Higher Education",
     sub: "About 71% of HS grads — 4-year and community college combined",
     bar: "62%",
-    fill: "bg-[#3D74C8]",
-    countColor: "text-[#3D74C8]",
+    fill: "bg-brand-blue-light",
+    countColor: "text-brand-blue-light",
   },
   {
     count: "~47",
@@ -43,15 +43,15 @@ const tiers: Tier[] = [
     sub: "The minimum sequence needed to apply to a UC or CSU",
     bar: "47%",
     fill: "bg-[#5B8DD6]",
-    countColor: "text-[#3D74C8]",
+    countColor: "text-brand-blue-light",
   },
   {
     count: "~35",
     label: "Hold a Bachelor's Degree by Their Late 20s",
     sub: "Combining direct enrollment + community college transfer",
     bar: "35%",
-    fill: "bg-[#F5A623]",
-    countColor: "text-[#F5A623]",
+    fill: "bg-brand-gold",
+    countColor: "text-brand-gold",
   },
   {
     count: "~22",
@@ -64,17 +64,18 @@ const tiers: Tier[] = [
 ];
 
 export function CaliforniaPipeline() {
+  const reduce = useReducedMotion();
   return (
     <section className="section-padding bg-white">
       <div className="container-wide">
         <FadeIn className="text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             The California Pipeline
           </p>
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#2B5BA8] mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-brand-blue mb-4">
             From 100 Freshmen to ~35 Graduates
           </h2>
-          <p className="text-lg text-[#4B5563] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Track a theoretical cohort of 100 California high school freshmen
             through the education system. The pipeline filters down at every
             stage — leaving most students without the four-year degree that has
@@ -93,24 +94,24 @@ export function CaliforniaPipeline() {
                 </div>
 
                 <div className="min-w-0">
-                  <div className="font-semibold text-base lg:text-lg text-[#1E3F7A] leading-snug">
+                  <div className="font-semibold text-base lg:text-lg text-brand-blue-dark leading-snug">
                     {tier.label}
                   </div>
-                  <div className="text-xs lg:text-sm text-[#6B7280] mt-1 leading-relaxed">
+                  <div className="text-xs lg:text-sm text-neutral-500 mt-1 leading-relaxed">
                     {tier.sub}
                   </div>
                 </div>
 
-                <div className="relative h-9 lg:h-10 bg-[#F3F4F6] rounded-md overflow-hidden">
+                <div className="relative h-9 lg:h-10 bg-neutral-100 rounded-md overflow-hidden">
                   <motion.div
-                    initial={{ width: 0 }}
+                    initial={reduce ? false : { width: 0 }}
                     whileInView={{ width: tier.bar }}
                     viewport={{ once: true, margin: "-80px" }}
-                    transition={{
-                      duration: 1.1,
-                      delay: i * 0.12,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
+                    transition={
+                      reduce
+                        ? { duration: 0 }
+                        : { duration: 1.1, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }
+                    }
                     className={`${tier.fill} h-full rounded-md`}
                   />
                 </div>
@@ -120,7 +121,7 @@ export function CaliforniaPipeline() {
         </div>
 
         <FadeIn delay={0.6}>
-          <p className="text-center text-sm text-[#6B7280] mt-12 max-w-2xl mx-auto italic">
+          <p className="text-center text-sm text-neutral-500 mt-12 max-w-2xl mx-auto italic">
             Sources: California Department of Education (2025/2026), Public
             Policy Institute of California (April 2026).
           </p>

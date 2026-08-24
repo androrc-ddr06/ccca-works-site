@@ -31,10 +31,10 @@ const steps = [
 
 export function ProcessSteps() {
   return (
-    <section className="section-padding bg-[#2B5BA8]">
+    <section className="section-padding bg-brand-blue">
       <div className="container-wide">
         <FadeIn className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#F5A623] mb-3">
+          <p className="text-sm font-semibold uppercase tracking-widest text-brand-gold mb-3">
             Simple Process
           </p>
           <h2 className="text-3xl lg:text-4xl font-bold text-white">
@@ -50,7 +50,7 @@ export function ProcessSteps() {
               <StaggerItem key={step.number}>
                 <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                   <div className="relative mb-5">
-                    <div className="w-16 h-16 rounded-full bg-[#F5A623] flex items-center justify-center font-bold text-[#1E3F7A] text-lg font-display shadow-lg">
+                    <div className="w-16 h-16 rounded-full bg-brand-gold flex items-center justify-center font-bold text-brand-blue-dark text-lg font-display shadow-lg">
                       {step.number}
                     </div>
                     {i < steps.length - 1 && (
