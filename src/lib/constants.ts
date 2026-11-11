@@ -13,6 +13,10 @@ export const NAV_LINKS = [
 export const DOCUSIGN_URL =
   process.env.NEXT_PUBLIC_DOCUSIGN_POWERFORM_URL ?? "#";
 
+// Google Doc with the Board of Directors' meeting notes — linked from /board.
+export const BOARD_MEETING_LOG_URL =
+  "https://docs.google.com/document/d/1gKeRSrup5AHwt_B2vc2UJEhiBz1AihNR96_VdXM8q4A/edit?pli=1&tab=t.0";
+
 // The CCCA Career Portal — students log work hours, employers confirm them.
 // A sibling app on its own subdomain of the same domain: one brand, but the two
 // deploy independently, and credentials are never typed on a page served from

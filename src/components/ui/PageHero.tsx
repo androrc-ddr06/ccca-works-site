@@ -1,11 +1,13 @@
+import { ReactNode } from "react";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 interface PageHeroProps {
   title: string;
   subtitle?: string;
+  children?: ReactNode;
 }
 
-export function PageHero({ title, subtitle }: PageHeroProps) {
+export function PageHero({ title, subtitle, children }: PageHeroProps) {
   return (
     <section className="bg-brand-blue pt-28 lg:pt-32 pb-20 lg:pb-28">
       <div className="container-wide text-center">
@@ -17,6 +19,9 @@ export function PageHero({ title, subtitle }: PageHeroProps) {
             <p className="text-lg text-blue-200 max-w-2xl mx-auto">
               {subtitle}
             </p>
+          )}
+          {children && (
+            <div className="mt-8 flex justify-center">{children}</div>
           )}
         </FadeIn>
       </div>
